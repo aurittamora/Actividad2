@@ -62,6 +62,13 @@ ahorcado = {0: '''
     ========= MUERTO!'''
 }
 
+##funcion para imprimir
+def imprimir(x, intentos, frase_oculta):
+    print(f'Llevas {intentos} intentos.')
+    print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
+    print('')
+    print(x)
+    print('')
 def numLetras():
     numero_letras = 0
     for letra in frase:
@@ -233,3 +240,5 @@ while True:
                         print('')
                         print('Has intoducido un caracter no válido.')
                         print('')
+
+
