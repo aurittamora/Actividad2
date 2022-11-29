@@ -1,57 +1,58 @@
-import time
+import  time
 import os
+
 os.system('cls')
 
-ahorcado = {1:'''
+ahorcado = {0: '''
       +---+
       |   |
           |
           |
           |
           |
-    =========''',2:'''
-      +---+
-      |   |
-      O   |
-          |
-          |
-          |
-    =========''',3:'''
+    =========''', 1: '''
       +---+
       |   |
       O   |
+          |
+          |
+          |
+    =========''', 2: '''
+      +---+
+      |   |
+      O   |
       |   |
           |
           |
-    =========''',4:'''
+    =========''', 3: '''
       +---+
       |   |
       O   |
      /|   |
           |
           |
-    =========''',5:'''
+    =========''', 4: '''
       +---+
       |   |
       O   |
      /|\  |
           |
           |
-    =========''',6:'''
+    =========''', 5: '''
       +---+
       |   |
       O   |
      /|\  |
      /    |
           |
-    =========''',7:'''
+    =========''', 6: '''
       +---+
       |   |
       O   |
      /|\  |
      / \  |
           |
-    =========''',8:'''
+    =========''', 7: '''
       +---+
       |   |
       O   |
@@ -59,14 +60,8 @@ ahorcado = {1:'''
      /|\  |
      / \  |
     ========= MUERTO!'''
-
 }
 
-
-
-abecedario = ['a', 'b','c', 'd','e','f','g','h', 'i', 'j','k','l','m', 'n', 'ñ', 'o','p', 'q','r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-def salto():
-    print('')
 def numLetras():
     numero_letras = 0
     for letra in frase:
@@ -75,215 +70,166 @@ def numLetras():
     return numero_letras
 
 
+abecedario = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't',
+              'u', 'v', 'w', 'x', 'y', 'z']
 
-print('Vamos a jugar al ahorcado.')
-pregunta_inicial = input('¿Quieres jugar?:\t').lower()
+pregunta = input('¿Quieres jugar al ahorcado? si/no:\t').lower()
+
+##Comprobación de la respuesta de pregunta.
 
 while True:
-    if pregunta_inicial == 'si' or pregunta_inicial == 's':
+    if pregunta == 'si' or pregunta == 's':
         print('')
+        print('¡Empecemos a jugar!')
         break
-    elif pregunta_inicial == 'no' or pregunta_inicial == 'n':
-        print('Adiós, jugaremos otro dia')
+    elif pregunta == 'no' or pregunta == 'n':
+        print('Jugaremos en otro momento.')
         exit()
     else:
         os.system('cls')
-        print('Tu respuesta no es válida.')
+        print('Tu respuesta no es valida.')
         print('')
-        pregunta_inicial = input('¿Quieres jugar?:\t').lower()
+        pregunta = input('¿Quieres jugar al ahorcado? si/no:\t').lower()
 
+## Ya se ha comprobado si quieres jugar o no, como quieres jugar hay que comprobar la que los caracteres de la frase estan en el abecedario
+print('')
 frase = input('Introduce una frase:\t').lower()
 
 while True:
-    long = len(frase)
-    a = 0
-    for i in frase:
-        if i in abecedario or i == ' ':
-            a += 1
-    if a == long:
+    i = 0
+    for letra in frase:
+        if letra == ' ' or letra in abecedario:
+            i += 1
+
+    if i == len(frase):
+        print('')
+        print('Pásale el ordenador a tu compañero para que intente adivinar tu frase.')
+        print('Espera a que se borre la pantalla')
         break
     else:
         os.system('cls')
         print('En la frase introducida hay un valor que no pertenece al abecedario')
-        salto()
+        print('')
         frase = input('Introduce una frase:\t').lower()
-
-salto()
-salto()
-salto()
-print('Pásale el ordenador a tu compañero para que intente adivinar tu frase.')
-print('Espera a que se borre la pantalla')
 
 time.sleep(2.5)
 os.system('cls')
-
-print(f'La frase que tienes que adivinar tiene {numLetras()} letras.')
+## ya hemos comprobado las dos primeras condiciones que quieras jugar y que la frase introducida solo tenga valor del abecedario o sea esoacio
+## vamos a jugar
 
 intentos = 0
-intentos = int(intentos)
-letras_ocultas= []
+frase_oculta = []
 letras_vistas = []
 letras_borradas = []
 
 for i in frase:
     letras_vistas.append(i)
 
-for hueco in frase:
-    if hueco == ' ':
-        letras_ocultas.append('  ')
+for letra in frase:
+    if letra in abecedario:
+        frase_oculta.append(' _')
     else:
-        letras_ocultas.append(' _')
+        frase_oculta.append(' ')
 
-print("".join(letras_ocultas))
-salto()
+print(f'Llevas {intentos} intentos.')
+print(ahorcado.get(intentos), ' ',''.join(frase_oculta) )
+
+print('')
 
 
 
 while True:
-    if intentos < 8:
-        if "".join(letras_ocultas) == "".join(letras_vistas):
-            os.system('cls')
-            var_ganador = 'Has ganado!!!'
-            lista_var = []
-            for l in var_ganador:
-                os.system('cls')
-                salto()
-                lista_var.append(l)
-                print("".join(lista_var))
-                time.sleep(0.25)
-                salto()
-            break
 
-        else:
-            salto()
-            salto()
-            ltr = input('Introduce una letra:\t').lower()
-            os.system('cls')
-
-            if len(ltr) == 1 and ltr in abecedario:
-                for i in range(len(frase)):
-                    if letras_vistas[i] == ltr:
-                        letras_ocultas[i] = ltr
-
-                abecedario.remove(ltr)
-                letras_borradas.append(ltr)
-
-                if ltr not in frase:
-                    intentos += 1
-
-                if intentos == 0:
-                    print(f'Llevas {intentos} intentos.')
-                    salto()
-                    print("".join(letras_ocultas))
-                    salto()
-                    salto()
-                    print('¡Sigue asi!')
-                    letras_borradas.append(ltr)
-
-
-                else:
-                    print(f'Llevas {intentos} intentos.')
-                    print(ahorcado.get(intentos), ' ' ,"".join(letras_ocultas))
-                    salto()
-
-
-            else:
-                if len(ltr)== 1:
-                    if ltr in letras_borradas:
-                        if intentos == 0:
-                            print(f'Llevas {intentos} intentos.')
-                            salto()
-                            print("".join(letras_ocultas))
-                            salto()
-                            print(f'Ya has introducido la letra {ltr}.')
-                            salto()
-
-
-
-                        else:
-                            print(f'Llevas {intentos} intentos.')
-                            salto()
-                            print(ahorcado.get(intentos), ' ' ,"".join(letras_ocultas))
-                            salto()
-                            print(f'Ya has introducido la letra {ltr}.')
-                            salto()
-
-
-                    elif ltr not in letras_borradas and ltr not in abecedario :
-                        print(f'Llevas {intentos} intentos.')
-                        salto()
-                        print(ahorcado.get(intentos), ' ' ,"".join(letras_ocultas))
-                        salto()
-                        print(f'Los valores introducidos son erroneos.')
-                        salto()
-
-                    else:
-                        if intentos == 0:
-                            print(f'Llevas {intentos} intentos.')
-                            salto()
-                            print("".join(letras_ocultas))
-                            salto()
-                            print(f'Ya has introducido la letra {ltr}.')
-                            salto()
-
-
-                        else:
-                            print(f'Llevas {intentos} intentos.')
-                            salto()
-                            print(ahorcado.get(intentos), ' ' ,"".join(letras_ocultas))
-                            salto()
-                            print(f'Ya has introducido la letra {ltr}.')
-                            salto()
-
-
-
-                elif len(ltr) > 1:
-                    if intentos == 0:
-                        print(f'Llevas {intentos} intentos.')
-                        salto()
-                        print("".join(letras_ocultas))
-                        salto()
-                        print(f'Los valores introducidos son erroneos.')
-                        salto()
-
-                    else:
-                        print(f'Llevas {intentos} intentos.')
-                        salto()
-                        print(ahorcado.get(intentos), ' ' ,"".join(letras_ocultas))
-                        salto()
-                        print(f'Ya has introducido la letra {ltr}.')
-                        salto()
-
-    elif intentos == 0:
-        os.system('cls')
+    if ''.join(frase_oculta) == frase:
         var_ganador = 'Has ganado!!!'
         lista_var = []
         for l in var_ganador:
             os.system('cls')
-            salto()
+            print('')
             lista_var.append(l)
             print("".join(lista_var))
             time.sleep(0.25)
-            salto()
-
-    else:
-        salto()
-        var_perdedor = 'Has perdido, la próxima vez será'
-        lista_var_per = []
-        for l in var_perdedor:
-            os.system('cls')
-            salto()
-            lista_var_per.append(l)
-            print("".join(lista_var_per))
-            time.sleep(0.25)
-            salto()
-        os.system('cls')
-        print(f'Llevas {intentos} intentos.')
-        salto()
-        print(ahorcado.get(intentos), ' ', "".join(letras_ocultas))
-        salto()
-        print(var_perdedor)
-
-        salto()
+            print('')
         break
+    else:
+        if intentos == 7:
+            os.system('cls')
+            print(f'Llevas {intentos} intentos.')
+            print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
+            print('')
+            print(f'La frase que tenías que adivinar es: {frase} ')
+            print('')
+            break
+        else:
+            print('')
+            print('')
+            var = input('Introduce una letra:\t').lower()
+            os.system('cls')
+            if len(var) > 1:
+                print(f'Llevas {intentos} intentos.')
+                print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
+                print('')
+                print('Has introducido más de un caracter.')
+                print('')
 
+
+            else:
+                if var in abecedario:
+                    if var in letras_vistas :
+                        for j in range(len(frase)):
+                            if letras_vistas[j] == var:
+                                frase_oculta[j] = var
+
+                        letras_borradas.append(var)
+                        abecedario.remove(var)
+                        print(f'Llevas {intentos} intentos.')
+                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
+                        print('')
+
+
+                    else:
+                        intentos += 1
+
+                        letras_borradas.append(var)
+                        abecedario.remove(var)
+
+                        print(f'Llevas {intentos} intentos.')
+                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
+                        print('')
+                        print(f'La letra {var} no esta en la frase')
+                        print('')
+
+
+
+
+                else:
+                    if var in letras_borradas:
+                        print(f'Llevas {intentos} intentos.')
+                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
+                        print('')
+                        print(f'Ya has intoducido la letra {var}')
+                        print('')
+
+
+                    elif var == ' ':
+                        print(f'Llevas {intentos} intentos.')
+                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
+                        print('')
+                        print('No has introducido ningún valor.')
+                        print('')
+
+
+                    elif var.isdigit() == True:
+                        print(f'Llevas {intentos} intentos.')
+                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
+                        print('')
+                        print('Has intoducido un valor numérico.')
+                        print('')
+
+
+                    else:
+                        print(f'Llevas {intentos} intentos.')
+                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
+                        print('')
+                        print('Has intoducido un caracter no válido.')
+                        print('')
