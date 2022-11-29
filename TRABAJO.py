@@ -161,11 +161,8 @@ while True:
     else:
         if intentos == 7:
             os.system('cls')
-            print(f'Llevas {intentos} intentos.')
-            print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
-            print('')
-            print(f'La frase que tenías que adivinar es: {frase} ')
-            print('')
+            caso = f'La frase que tenías que adivinar es: {frase} '
+            imprimir(caso,intentos, frase_oculta)
             break
         else:
             print('')
@@ -173,13 +170,8 @@ while True:
             var = input('Introduce una letra:\t').lower()
             os.system('cls')
             if len(var) > 1:
-                print(f'Llevas {intentos} intentos.')
-                print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
-                print('')
-                print('Has introducido más de un caracter.')
-                print('')
-
-
+                caso = 'Has introducido más de un caracter.'
+                imprimir(caso, intentos, frase_oculta)
             else:
                 if var in abecedario:
                     if var in letras_vistas :
@@ -189,10 +181,8 @@ while True:
 
                         letras_borradas.append(var)
                         abecedario.remove(var)
-                        print(f'Llevas {intentos} intentos.')
-                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
-                        print('')
-
+                        caso = ' '
+                        imprimir(caso, intentos, frase_oculta)
 
                     else:
                         intentos += 1
@@ -200,45 +190,22 @@ while True:
                         letras_borradas.append(var)
                         abecedario.remove(var)
 
-                        print(f'Llevas {intentos} intentos.')
-                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
-                        print('')
-                        print(f'La letra {var} no esta en la frase')
-                        print('')
-
-
-
+                        caso = f'La letra {var} no esta en la frase'
+                        imprimir(caso, intentos, frase_oculta)
 
                 else:
                     if var in letras_borradas:
-                        print(f'Llevas {intentos} intentos.')
-                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
-                        print('')
-                        print(f'Ya has intoducido la letra {var}')
-                        print('')
-
+                        caso = f'Ya has intoducido la letra {var}'
+                        imprimir(caso, intentos, frase_oculta)
 
                     elif var == ' ':
-                        print(f'Llevas {intentos} intentos.')
-                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
-                        print('')
-                        print('No has introducido ningún valor.')
-                        print('')
-
+                        caso = 'No has introducido ningún valor.'
+                        imprimir(caso, intentos, frase_oculta)
 
                     elif var.isdigit() == True:
-                        print(f'Llevas {intentos} intentos.')
-                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
-                        print('')
-                        print('Has intoducido un valor numérico.')
-                        print('')
-
+                        caso = 'Has intoducido un valor numérico.'
+                        imprimir(caso, intentos, frase_oculta)
 
                     else:
-                        print(f'Llevas {intentos} intentos.')
-                        print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
-                        print('')
-                        print('Has intoducido un caracter no válido.')
-                        print('')
-
-
+                        caso ='Has intoducido un caracter no válido.'
+                        imprimir(caso, intentos, frase_oculta)
