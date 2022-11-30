@@ -78,12 +78,6 @@ def imprimir_comandos():
             abecedario: Imprime las letras del abecedario que te quedan por utilizar.
     ''')
 
-def numLetras():
-    numero_letras = 0
-    for letra in frase:
-        if letra != ' ':
-            numero_letras += 1
-    return numero_letras
 def ganaste():
     var_ganador = 'Has ganado!!!'
     lista_var = []
