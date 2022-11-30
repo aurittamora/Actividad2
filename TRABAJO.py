@@ -156,7 +156,7 @@ for letra in frase:
     if letra in abecedario:
         frase_oculta.append(' _')
     else:
-        frase_oculta.append(' ')
+        frase_oculta.append('  ')
 
 print(f'Llevas {intentos} intentos.')
 print(ahorcado.get(intentos), ' ',''.join(frase_oculta) )
