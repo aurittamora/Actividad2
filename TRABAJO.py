@@ -69,14 +69,12 @@ def imprimir(x, intentos, frase_oculta):
     print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
     print('')
     print(x)
-    imprimir_comandos()
-
-def imprimir_comandos():
     print('''
-    comandos:
-            exit/ salir: Finalización del juego.
-            abecedario: Imprime las letras del abecedario que te quedan por utilizar.
-    ''')
+        comandos:
+                exit/ salir: Finalización del juego.
+                abecedario: Imprime las letras del abecedario que te quedan por utilizar.
+        ''')
+
 
 def ganaste():
     var_ganador = 'Has ganado!!!'
@@ -154,7 +152,11 @@ for letra in frase:
 
 print(f'Llevas {intentos} intentos.')
 print(ahorcado.get(intentos), ' ',''.join(frase_oculta) )
-imprimir_comandos()
+print('''
+        comandos:
+                exit/ salir: Finalización del juego.
+                abecedario: Imprime las letras del abecedario que te quedan por utilizar.
+        ''')
 
 
 
