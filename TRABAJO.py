@@ -76,7 +76,18 @@ def numLetras():
         if letra != ' ':
             numero_letras += 1
     return numero_letras
-
+def ganaste():
+    var_ganador = 'Has ganado!!!'
+    lista_var = []
+    for l in var_ganador:
+        os.system('cls')
+        print(f'Llevas {intentos} intentos.')
+        print(ahorcado.get(intentos), ' ', frase)
+        print('')
+        lista_var.append(l)
+        print("".join(lista_var))
+        time.sleep(0.25)
+        print('')
 
 abecedario = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't',
               'u', 'v', 'w', 'x', 'y', 'z']
@@ -149,19 +160,8 @@ print('')
 while True:
 
     if ''.join(frase_oculta) == frase:
-        var_ganador = 'Has ganado!!!'
-        lista_var = []
-        for l in var_ganador:
-            os.system('cls')
-            caso = ' '
-            imprimir(caso, intentos, frase_oculta)
-            print('')
-            lista_var.append(l)
-            print("".join(lista_var))
-            time.sleep(0.25)
-            print('')
-
-        break
+        ganaste()
+        exit()
     else:
         if intentos == 7:
             os.system('cls')
@@ -174,8 +174,14 @@ while True:
             var = input('Introduce una letra:\t').lower()
             os.system('cls')
             if len(var) > 1:
-                caso = 'Has introducido más de un caracter.'
-                imprimir(caso, intentos, frase_oculta)
+                if var == frase:
+                    ganaste()
+                    exit()
+                else:
+                    caso = 'Has introducido más de un caracter.'
+                    imprimir(caso, intentos, frase_oculta)
+
+
             else:
                 if var in abecedario:
                     if var in letras_vistas :
