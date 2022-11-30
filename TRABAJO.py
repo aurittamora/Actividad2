@@ -70,6 +70,7 @@ def imprimir(x, intentos, frase_oculta):
     print('')
     print(x)
     imprimir_comandos()
+
 def imprimir_comandos():
     print('''
     comandos:
@@ -180,56 +181,56 @@ while True:
             var = input('Introduce una letra:\t').lower()
             imprimir_comandos()
             os.system('cls')
-            if len(var) > 1:
-                if var == frase:
-                    ganaste()
-                    exit()
-
-                if var == 'abecedario':
-                    print('Estas son las letras que te quedan en el abecedario.')
-                    print(','.join(abecedario))
-                    print('')
-                elif var == 'exit' or 'salir':
-                    exit()
-                else:
+            if var == 'salir' or var== 'exit':
+                caso = 'Adiós jugaremos en otro momento.'
+                imprimir(caso, intentos, frase_oculta)
+                break
+            else:
+                if len(var) > 1:
                     caso = 'Has introducido más de un caracter.'
                     imprimir(caso, intentos, frase_oculta)
-
-
-            else:
-                if var in abecedario:
-                    if var in letras_vistas :
-                        for j in range(len(frase)):
-                            if letras_vistas[j] == var:
-                                frase_oculta[j] = var
-
-                        letras_borradas.append(var)
-                        abecedario.remove(var)
-                        caso = ' '
-                        imprimir(caso, intentos, frase_oculta)
-
-                    else:
-                        intentos += 1
-
-                        letras_borradas.append(var)
-                        abecedario.remove(var)
-
-                        caso = f'La letra {var} no esta en la frase'
-                        imprimir(caso, intentos, frase_oculta)
+                    if var == frase:
+                        ganaste()
+                        break
+                    if var == 'abecedario':
+                        print('Estas son las letras que te quedan en abcedario:')
+                        print('')
+                        print(','.join(abecedario))
 
                 else:
-                    if var in letras_borradas:
-                        caso = f'Ya has intoducido la letra {var}'
-                        imprimir(caso, intentos, frase_oculta)
+                    if var in abecedario:
+                        if var in letras_vistas :
+                            for j in range(len(frase)):
+                                if letras_vistas[j] == var:
+                                    frase_oculta[j] = var
 
-                    elif var == ' ':
-                        caso = 'No has introducido ningún valor.'
-                        imprimir(caso, intentos, frase_oculta)
+                            letras_borradas.append(var)
+                            abecedario.remove(var)
+                            caso = ' '
+                            imprimir(caso, intentos, frase_oculta)
 
-                    elif var.isdigit() == True:
-                        caso = 'Has intoducido un valor numérico.'
-                        imprimir(caso, intentos, frase_oculta)
+                        else:
+                            intentos += 1
+
+                            letras_borradas.append(var)
+                            abecedario.remove(var)
+
+                            caso = f'La letra {var} no esta en la frase'
+                            imprimir(caso, intentos, frase_oculta)
 
                     else:
-                        caso ='Has intoducido un caracter no válido.'
-                        imprimir(caso, intentos, frase_oculta)
+                        if var in letras_borradas:
+                            caso = f'Ya has intoducido la letra {var}'
+                            imprimir(caso, intentos, frase_oculta)
+
+                        elif var == ' ':
+                            caso = 'No has introducido ningún valor.'
+                            imprimir(caso, intentos, frase_oculta)
+
+                        elif var.isdigit() == True:
+                            caso = 'Has intoducido un valor numérico.'
+                            imprimir(caso, intentos, frase_oculta)
+
+                        else:
+                            caso ='Has intoducido un caracter no válido.'
+                            imprimir(caso, intentos, frase_oculta)
