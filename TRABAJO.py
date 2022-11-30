@@ -188,19 +188,22 @@ while True:
                 break
             else:
                 if len(var) > 1:
-                    caso = 'Has introducido más de un caracter.'
-                    imprimir(caso, intentos, frase_oculta)
+                    caso = 'Has introducido más de un caracter erróneo.'
                     if var == frase:
                         ganaste()
                         break
-                    if var == 'abecedario':
+                    elif var == 'abecedario':
                         print('Estas son las letras que te quedan en abcedario:')
                         print('')
                         print(','.join(abecedario))
+                    else:
+                        intentos += 1
+                    imprimir(caso, intentos, frase_oculta)
+
 
                 else:
                     if var in abecedario:
-                        if var in letras_vistas :
+                        if var in letras_vistas:
                             for j in range(len(frase)):
                                 if letras_vistas[j] == var:
                                     frase_oculta[j] = var
