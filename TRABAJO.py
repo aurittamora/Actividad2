@@ -63,6 +63,7 @@ ahorcado = {0: '''
 }
 
 ##funcion para imprimir
+
 def imprimir(x, intentos, frase_oculta):
     print(f'Llevas {intentos} intentos.')
     print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
@@ -158,7 +159,6 @@ print('')
 
 
 while True:
-
     if ''.join(frase_oculta) == frase:
         ganaste()
         exit()
@@ -174,7 +174,13 @@ while True:
             var = input('Introduce una letra:\t').lower()
             os.system('cls')
             if len(var) > 1:
-                if var == frase:
+                if var == 'abecedario':
+                    print('Estas son las letras que te quedan en el abecedario.')
+                    print(','.join(abecedario))
+                    print('')
+                elif var == 'exit' or 'salir':
+                    exit()
+                elif var == frase:
                     ganaste()
                     exit()
                 else:
