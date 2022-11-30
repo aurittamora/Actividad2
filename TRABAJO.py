@@ -181,14 +181,15 @@ while True:
             imprimir_comandos()
             os.system('cls')
             if len(var) > 1:
+                if var == frase:
+                    ganaste()
+                    exit()
+
                 if var == 'abecedario':
                     print('Estas son las letras que te quedan en el abecedario.')
                     print(','.join(abecedario))
                     print('')
                 elif var == 'exit' or 'salir':
-                    exit()
-                elif var == frase:
-                    ganaste()
                     exit()
                 else:
                     caso = 'Has introducido más de un caracter.'
