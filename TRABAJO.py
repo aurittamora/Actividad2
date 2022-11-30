@@ -175,7 +175,12 @@ while True:
             print('')
             print('')
             var = input('Introduce una letra:\t').lower()
-            imprimir_comandos()
+            print('''
+                    comandos:
+                            exit/ salir: Finalización del juego.
+                            abecedario: Imprime las letras del abecedario que te quedan por utilizar.
+                    ''')
+
             os.system('cls')
             if var == 'salir' or var== 'exit':
                 caso = 'Adiós jugaremos en otro momento.'
