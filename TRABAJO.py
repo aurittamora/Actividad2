@@ -69,6 +69,7 @@ def imprimir(x, intentos, frase_oculta):
     print('')
     print(x)
     print('')
+
 def numLetras():
     numero_letras = 0
     for letra in frase:
@@ -152,11 +153,14 @@ while True:
         lista_var = []
         for l in var_ganador:
             os.system('cls')
+            caso = ' '
+            imprimir(caso, intentos, frase_oculta)
             print('')
             lista_var.append(l)
             print("".join(lista_var))
             time.sleep(0.25)
             print('')
+
         break
     else:
         if intentos == 7:
