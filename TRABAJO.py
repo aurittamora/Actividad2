@@ -69,7 +69,13 @@ def imprimir(x, intentos, frase_oculta):
     print(ahorcado.get(intentos), ' ', ''.join(frase_oculta))
     print('')
     print(x)
-    print('')
+    imprimir_comandos()
+def imprimir_comandos():
+    print('''
+    comandos:
+            exit/ salir: Finalización del juego.
+            abecedario: Imprime las letras del abecedario que te quedan por utilizar.
+    ''')
 
 def numLetras():
     numero_letras = 0
@@ -153,8 +159,8 @@ for letra in frase:
 
 print(f'Llevas {intentos} intentos.')
 print(ahorcado.get(intentos), ' ',''.join(frase_oculta) )
+imprimir_comandos()
 
-print('')
 
 
 
@@ -172,6 +178,7 @@ while True:
             print('')
             print('')
             var = input('Introduce una letra:\t').lower()
+            imprimir_comandos()
             os.system('cls')
             if len(var) > 1:
                 if var == 'abecedario':
