@@ -228,13 +228,16 @@ while True:
                             imprimir(caso, intentos, frase_oculta)
 
                         elif var == ' ':
+                            intentos += 1
                             caso = 'No has introducido ningún valor.'
                             imprimir(caso, intentos, frase_oculta)
 
                         elif var.isdigit() == True:
+                            intentos += 1
                             caso = 'Has intoducido un valor numérico.'
                             imprimir(caso, intentos, frase_oculta)
 
                         else:
+                            intentos += 1
                             caso ='Has intoducido un caracter no válido.'
                             imprimir(caso, intentos, frase_oculta)
