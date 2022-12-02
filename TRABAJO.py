@@ -241,3 +241,6 @@ while True:
                             intentos += 1
                             caso ='Has intoducido un caracter no válido.'
                             imprimir(caso, intentos, frase_oculta)
+
+
+#hola pablo que tal estas
